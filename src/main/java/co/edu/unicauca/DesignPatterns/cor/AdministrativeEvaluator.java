@@ -7,8 +7,10 @@ public class AdministrativeEvaluator extends ProjectHandler{
     @Override
     public boolean handle(Project project){
         if (project.getComplexity()<=7){
+            System.out.println("Administative evaluation passed");
             return true;
         }
+        next.handle(project);
         return false;
     }
 }
