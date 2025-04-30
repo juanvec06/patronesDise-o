@@ -13,10 +13,12 @@ public class EvaluateProjectCommand implements Command {
     @Override
     public void execute() {
         if(project.getComplexity() > 5){
-            project.setStatus("Denied");
+            project.setStatus("Rejected");
+            System.out.println("Project "+project.getName()+" Rejected, it's too complex");
         }
         else{
             project.setStatus("Accepted");
+            System.out.println("Project Accepted");
         }
     }
 }

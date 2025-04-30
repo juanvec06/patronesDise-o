@@ -1,11 +1,14 @@
 package co.edu.unicauca.DesignPatterns.command;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CommandInvoker {
     private List<Command> commands;
 
-    public CommandInvoker() {}
+    public CommandInvoker() {
+        commands = new ArrayList<Command>();
+    }
     public  CommandInvoker(List<Command> command) {
         this.commands = command;
     }

@@ -8,7 +8,7 @@ public class AssignProjectCommand implements Command {
     }
     @Override
     public void execute() {
-        project.assigned();
+        project.setStatus("Project assigned");
         System.out.println("Project assigned: " + project.getName());
     }
 }
