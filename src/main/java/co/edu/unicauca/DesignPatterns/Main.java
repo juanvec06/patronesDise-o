@@ -4,9 +4,14 @@ import co.edu.unicauca.DesignPatterns.bridge.*;
 import co.edu.unicauca.DesignPatterns.command.AssignProjectCommand;
 import co.edu.unicauca.DesignPatterns.command.Command;
 import co.edu.unicauca.DesignPatterns.command.EvaluateProjectCommand;
+import co.edu.unicauca.DesignPatterns.composite.CompositeTask;
+import co.edu.unicauca.DesignPatterns.composite.Task;
+import co.edu.unicauca.DesignPatterns.cor.Manager;
 import co.edu.unicauca.DesignPatterns.entities.Project;
 import co.edu.unicauca.DesignPatterns.command.CommandInvoker;
 import co.edu.unicauca.DesignPatterns.memento.Caretaker;
+import co.edu.unicauca.DesignPatterns.proxy.ProjectRepository;
+import co.edu.unicauca.DesignPatterns.proxy.ProjectRepositoryProxy;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -23,12 +28,12 @@ public class Main {
         invoker.addCommand(evaluateCommand);
         invoker.executeCommands();
 //        // ------------------ CHAIN OF RESPONSIBILITY ------------------
-//        System.out.println("\n--- Chain of Responsibility ---");
-//        Manager manager = new Manager();
-//        manager.createAuthorizationFlow();
-//        Project project2 = new Project("Academic System");
-//        project2.setComplexity(9);
-//        manager.getTechnicalEvaluator().handle(project2);
+        System.out.println("\n--- Chain of Responsibility ---");
+        Manager manager = new Manager();
+        manager.createAuthorizationFlow();
+        Project project2 = new Project("Academic System");
+        project2.setComplexity(9);
+        manager.getTechnicalEvaluator().handle(project2);
         // ------------------ MEMENTO ------------------
         System.out.println("\n--- Memento Pattern ---");
         Project statefulProject = new Project("eCommerce App");
@@ -44,11 +49,11 @@ public class Main {
         statefulProject.restoreFromMemento(caretaker.getMemento(1));
         System.out.println("Restored state: " + statefulProject.getStatus());
 //        // ------------------ COMPOSITE ------------------
-//        System.out.println("\n--- Composite Pattern ---");
-//        CompositeTask mainTask = new CompositeTask("Develop Project");
-//        mainTask.add(new Task("Requirement Analysis"));
-//        mainTask.add(new Task("Implementation"));
-//        mainTask.showDetails();
+        System.out.println("\n--- Composite Pattern ---");
+        CompositeTask mainTask = new CompositeTask("Develop Project");
+        mainTask.add(new Task("Requirement Analysis"));
+        mainTask.add(new Task("Implementation"));
+        mainTask.showDetails();
         // ------------------ BRIDGE ------------------
         System.out.println("\n--- Bridge Pattern ---");
         ProjectReport smsReport = new SmsReport(new HtmlReportFormatter());
@@ -57,8 +62,8 @@ public class Main {
         ProjectReport emailReport = new EmailReport(new JsonReportFormatter());
         emailReport.generate("Project completed with success");
 //        ----------- PROXY ------------------
-//        System.out.println("\n--- Proxy Pattern ---");
-//        ProjectRepositoryProxy("admin", "1234");
-//        repo.saveProject("Blockchain System");
+        System.out.println("\n--- Proxy Pattern ---");
+        ProjectRepository repo = new ProjectRepositoryProxy("admin", "1234");
+        repo.saveProject("Blockchain System");
     }
 }
